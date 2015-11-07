@@ -18,7 +18,7 @@ class ComposerChecks extends LowlevelChecks
         <li class="status-%s">For a default SQLite install, a writable directory at: <code>%s</code></li>
         <li class="status-%s">A writable cache directory at: <code>%s</code></li>
         <li class="status-%s">A writable extensions directory at: <code>%s</code></li>
-        <li class="status-%s">A writable extensions assets directory at: <code>%s</code></li>
+        <li class="status-%s">A writable extension assets directory at: <code>%s</code></li>
     </ol>
     <p>If any of the above are failing, create the folder and make it writable to the web server.</p>
     <strong>
@@ -55,7 +55,7 @@ HTML;
 
     public function checkPublicAssets()
     {
-        $this->checkDir($this->config->getPath('web') . '/extensions');
+        $this->checkDir($this->config->getPath('extensionassets'));
     }
 
     protected function checkSummary()
@@ -67,7 +67,7 @@ HTML;
             $this->config->getPath('database'),
             $this->config->getPath('cache'),
             $this->config->getPath('extensions'),
-            $this->config->getPath('web') . '/extensions',
+            $this->config->getPath('extensionassets'),
         ];
         foreach ($checks as $check) {
             if (is_readable($check) && is_writable($check)) {
